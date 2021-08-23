@@ -27,10 +27,11 @@ Here is the list of already implemented/being implemented languages and also pla
 # Implementation Details
 Benchmarks require algorithms to be implemented in the same way and with similiar data structures to be more accurate. For convenience, here are all algorithms (brief description, complexity, pseudo-code) and data structures used in the project.
 ## Algorithms
-### Bubble Sort
-**Time complexity:** $O(N^2)$
+### **Bubble Sort**
 
-**Space complexity:** $O(1)$
+*Time complexity: O(N^2)*
+
+*Space complexity: O(1)*
 
 Iterate through array and swap adjacent elements if they are not on their place.
 ```
@@ -41,10 +42,11 @@ for i from 0 to N {
     }
 }
 ``` 
-### Selection Sort
-**Time complexity:** $O(N^2)$
+### **Selection Sort**
 
-**Space complexity:** $O(1)$
+*Time complexity: O(N^2)*
+
+*Space complexity: O(1)*
 
 Iterate through array, repeatedly find minimum element and put it into the beggining of the array
 ```
