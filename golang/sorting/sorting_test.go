@@ -12,6 +12,13 @@ import (
 const TestFilePath string = "../../tests/test.json"
 const BenchFilePath string = "../../tests/bench.json"
 
+// Clone method for test data
+func clone(src []int) []int {
+	dst := make([]int, len(src))
+	copy(dst, src)
+	return dst
+}
+
 // Struct for parsing test data from JSON
 type SortTestData struct {
 	Cases   [][]int `json:"sort_test_cases"`
@@ -82,12 +89,17 @@ func TestSort(t *testing.T) {
 func benchmarkSortFunc(s sortFunc, b *testing.B) {
 	sortCases, sortAnswers := readBenchData(b)
 
-	// b.ResetTimer()
+	// Launch all bench cases
+	b.ResetTimer()
 	for idx := range sortCases {
-		b.Run("size="+strconv.Itoa(len(sortCases[idx])), func(b *testing.B) {
-			s(sortCases[idx])
-			if !reflect.DeepEqual(sortCases[idx], sortAnswers[idx]) {
-				b.Error("wrong answer on benchmark", idx)
+		b.Run("size="+strconv.Itoa(len(sortCases[idx])), func(bb *testing.B) {
+			for j := 0; j < bb.N; j++ {
+				sortCasesClone := clone(sortCases[idx])
+
+				s(sortCasesClone)
+				if !reflect.DeepEqual(sortCasesClone, sortAnswers[idx]) {
+					b.Error("wrong answer on benchmark", idx)
+				}
 			}
 		})
 	}
