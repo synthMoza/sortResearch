@@ -78,11 +78,20 @@ func testSortFunc(s sortFunc, t *testing.T) {
 }
 
 func TestSort(t *testing.T) {
-	t.Run("bubbleSort", func(t *testing.T) {
+	t.Run("Bubble Sort", func(t *testing.T) {
 		testSortFunc(BubbleSort, t)
 	})
-	t.Run("selectionSort", func(t *testing.T) {
+	t.Run("Selection Sort", func(t *testing.T) {
 		testSortFunc(SelectionSort, t)
+	})
+	t.Run("Insertion Sort", func(t *testing.T) {
+		testSortFunc(InsertionSort, t)
+	})
+	t.Run("Merge Sort", func(t *testing.T) {
+		testSortFunc(MergeSort, t)
+	})
+	t.Run("Merge Sort Parallel", func(t *testing.T) {
+		testSortFunc(MergeSortParallel, t)
 	})
 }
 
@@ -106,13 +115,22 @@ func benchmarkSortFunc(s sortFunc, b *testing.B) {
 }
 
 func BenchmarkSort(b *testing.B) {
-	b.Run("stdSort", func(b *testing.B) {
+	b.Run("Standart Sort", func(b *testing.B) {
 		benchmarkSortFunc(sort.Ints, b)
 	})
-	b.Run("bubbleSort", func(b *testing.B) {
+	b.Run("Bubble Sort", func(b *testing.B) {
 		benchmarkSortFunc(BubbleSort, b)
 	})
-	b.Run("selectionSort", func(b *testing.B) {
+	b.Run("Selection Sort", func(b *testing.B) {
 		benchmarkSortFunc(SelectionSort, b)
+	})
+	b.Run("Insertion Sort", func(b *testing.B) {
+		benchmarkSortFunc(InsertionSort, b)
+	})
+	b.Run("Merge Sort", func(b *testing.B) {
+		benchmarkSortFunc(MergeSort, b)
+	})
+	b.Run("Merge Sort Parallel", func(b *testing.B) {
+		benchmarkSortFunc(MergeSortParallel, b)
 	})
 }

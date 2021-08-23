@@ -1,8 +1,11 @@
 // Implementation of several sorting algorithms in Go.
 package sorting
 
+import (
+	"sync"
+)
+
 // Sorts the given slice of integer using bubble sort algorithm.
-// Brief description: traverse slcie and swap adjacent elements if they are on wrong positions.
 func BubbleSort(sl []int) {
 	sliceLength := len(sl)
 
@@ -16,7 +19,6 @@ func BubbleSort(sl []int) {
 }
 
 // Sorts the given slice of integer using selection algorithm.
-// Brief description: repeatedly look for the minimum element and put it at the start of array
 func SelectionSort(sl []int) {
 	sliceLength := len(sl)
 
@@ -32,4 +34,99 @@ func SelectionSort(sl []int) {
 		// Swap these elements
 		sl[i], sl[minimumIdx] = sl[minimumIdx], sl[i]
 	}
+}
+
+// Sorts the given slice of integer using insertion algorithm.
+func InsertionSort(sl []int) {
+	sliceLength := len(sl)
+
+	for i := 1; i < sliceLength; i++ {
+		for j := i - 1; j >= 0; j-- {
+			if sl[j] > sl[j+1] {
+				sl[j], sl[j+1] = sl[j+1], sl[j]
+			} else {
+				break
+			}
+		}
+	}
+}
+
+// Helper for function for merge sort
+func merge(firstHalf []int, secondHalf []int) []int {
+	firstHalfLength := len(firstHalf)
+	secondHalfLength := len(secondHalf)
+	result := make([]int, 0, firstHalfLength+secondHalfLength)
+
+	firstHalfIdx, secondHalfIdx := 0, 0
+
+	// Iterate through both and put smaller value
+	for firstHalfIdx < firstHalfLength && secondHalfIdx < secondHalfLength {
+		if firstHalf[firstHalfIdx] < secondHalf[secondHalfIdx] {
+			result = append(result, firstHalf[firstHalfIdx])
+			firstHalfIdx++
+		} else {
+			result = append(result, secondHalf[secondHalfIdx])
+			secondHalfIdx++
+		}
+	}
+
+	// Pick from first, if left
+	for firstHalfIdx < firstHalfLength {
+		result = append(result, firstHalf[firstHalfIdx])
+		firstHalfIdx++
+	}
+
+	// Pick from second, if left
+	for secondHalfIdx < secondHalfLength {
+		result = append(result, secondHalf[secondHalfIdx])
+		secondHalfIdx++
+	}
+
+	return result
+}
+
+// Sorts the given slice of integer using merge algorithm.
+func MergeSort(sl []int) {
+	sliceLength := len(sl)
+	if sliceLength == 1 {
+		return
+	}
+
+	var middle int = (sliceLength - 1) / 2
+
+	firstHalf := sl[0 : middle+1]
+	secondHalf := sl[middle+1 : sliceLength]
+
+	MergeSort(firstHalf)
+	MergeSort(secondHalf)
+
+	copy(sl, merge(firstHalf, secondHalf))
+}
+
+// Sorts the given slice of integer using simple parallel merge algorithm.
+func MergeSortParallel(sl []int) {
+	wg := &sync.WaitGroup{}
+	sliceLength := len(sl)
+	if sliceLength == 1 {
+		return
+	}
+
+	var middle int = (sliceLength - 1) / 2
+
+	firstHalf := sl[0 : middle+1]
+	secondHalf := sl[middle+1 : sliceLength]
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		MergeSort(firstHalf)
+	}()
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		MergeSort(secondHalf)
+	}()
+
+	wg.Wait()
+	copy(sl, merge(firstHalf, secondHalf))
 }
