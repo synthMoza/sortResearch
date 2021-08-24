@@ -60,7 +60,7 @@ func GenerateTests() {
 }
 
 func GenerateBenchmarks() {
-	sizeCases := []int{50000, 200000, 500000}
+	sizeCases := []int{10000, 25000, 50000, 100000, 150000, 300000, 500000}
 	sortBenchData := &SortBenchData{
 		Cases:   make([][]int, 0, len(sizeCases)),
 		Answers: make([][]int, 0, len(sizeCases)),

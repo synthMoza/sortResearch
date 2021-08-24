@@ -130,3 +130,35 @@ func MergeSortParallel(sl []int) {
 	wg.Wait()
 	copy(sl, merge(firstHalf, secondHalf))
 }
+
+// Helper function for sorting according to pivot element for quicksort.
+// Returns the final position of pivot element
+func doPivot(sl []int, start, end int) int {
+	pivotIdx := end - 1
+	swapIdx := start
+
+	for i := start; i < end-1; i++ {
+		if sl[pivotIdx] > sl[i] {
+			sl[i], sl[swapIdx] = sl[swapIdx], sl[i]
+			swapIdx++
+		}
+	}
+
+	sl[pivotIdx], sl[swapIdx] = sl[swapIdx], sl[pivotIdx]
+	return swapIdx
+}
+
+// Helper recursive function for quicksort
+func recursiveQuickSort(sl []int, start, end int) {
+	if start < end-1 {
+		pivotIdx := doPivot(sl, start, end)
+		recursiveQuickSort(sl, start, pivotIdx)
+		recursiveQuickSort(sl, pivotIdx, end)
+	}
+}
+
+// Sorts the given slice of integer using quicksort algorithm. Last element is chosen
+// as pivot.
+func QuickSort(sl []int) {
+	recursiveQuickSort(sl, 0, len(sl))
+}

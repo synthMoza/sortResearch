@@ -9,6 +9,7 @@
     - [**Selection Sort**](#selection-sort)
     - [**Insertion Sort**](#insertion-sort)
     - [**Merge Sort**](#merge-sort)
+    - [**Quick Sort**](#quick-sort)
   - [Data Structures](#data-structures)
     - [Go](#go)
 - [Benchmarks](#benchmarks)
@@ -96,41 +97,35 @@ function mergeSort(arr array) {
     return merge(firstHalf, secondHalf)
 }
 ```
+
+### **Quick Sort**
+
+*Time complexity: Best and everage - O(N\*log(N)), Worst - O(N^2)*
+
+*Space complexity: O(log(N))*
+
+Choose pivot element from the array to start from, divide array into two parts: elements that are greater or equal than the pivot element, and ones that are less than the pivot element, then recursively call quick sort for these parts.
+
+```
+function quickSort(arr array, start int, end int) {
+    if start < end - 1 {
+        pivotIdx = doPivot(array, starn, end)
+        quickSort(arr, start, pivotIdx)
+        quickSort(arr, pivotIdx, end)
+    }
+}
+```
 ## Data Structures
 ### Go
 Slices are used for storing array. Benchmarking and testing is done with built-in tools (*testing* package). Concurrency is implemented with the help of goroutines and wait groups for synchronization.
 # Benchmarks
 Test data for benchmarking is generated with *Go* and stored in JSON files: arrays of 50000, 200000 and 500000 elements generated with *rand* package. All benchmarks are done on AMD Ryzen 5 4600H CPU on Windows 10.
 ## Go
-```
-goos: windows
-goarch: amd64
-pkg: sorting
-cpu: AMD Ryzen 5 4600H with Radeon Graphics
-BenchmarkSort/Standart_Sort/size=50000-12                     91          11898303 ns/op         1201518 B/op     100004 allocs/op
-BenchmarkSort/Standart_Sort/size=200000-12                    22          51346032 ns/op         4805793 B/op     400004 allocs/op
-BenchmarkSort/Standart_Sort/size=500000-12                     8         133709738 ns/op        12005965 B/op    1000004 allocs/op
-BenchmarkSort/Bubble_Sort/size=50000-12                        1        3545446100 ns/op         1201464 B/op     100004 allocs/op
-BenchmarkSort/Bubble_Sort/size=200000-12                       1        59612804000 ns/op        4805680 B/op     400003 allocs/op
-BenchmarkSort/Bubble_Sort/size=500000-12                       1        371163978100 ns/op      12005936 B/op    1000003 allocs/op
-BenchmarkSort/Selection_Sort/size=50000-12                     2         960536850 ns/op         1201456 B/op     100003 allocs/op
-BenchmarkSort/Selection_Sort/size=200000-12                    1        15383989200 ns/op        4805680 B/op     400003 allocs/op
-BenchmarkSort/Selection_Sort/size=500000-12                    1        97493659500 ns/op       12005936 B/op    1000003 allocs/op
-BenchmarkSort/Insertion_Sort/size=50000-12                     1        1124662100 ns/op         1201456 B/op     100003 allocs/op
-BenchmarkSort/Insertion_Sort/size=200000-12                    1        18135333600 ns/op        4805680 B/op     400003 allocs/op
-BenchmarkSort/Insertion_Sort/size=500000-12                    1        114790086200 ns/op      12005936 B/op    1000003 allocs/op
-BenchmarkSort/Merge_Sort/size=50000-12                       100          10553263 ns/op         7828921 B/op     150002 allocs/op
-BenchmarkSort/Merge_Sort/size=200000-12                       27          44006574 ns/op        34526800 B/op     600002 allocs/op
-BenchmarkSort/Merge_Sort/size=500000-12                        9         114056000 ns/op        90193738 B/op    1500002 allocs/op
-BenchmarkSort/Merge_Sort_Parallel/size=50000-12              144           8293017 ns/op         7828983 B/op     150003 allocs/op
-BenchmarkSort/Merge_Sort_Parallel/size=200000-12              37          32880105 ns/op        34526869 B/op     600003 allocs/op
-BenchmarkSort/Merge_Sort_Parallel/size=500000-12              14          84355236 ns/op        90193884 B/op    1500004 allocs/op
-PASS
-ok      sorting 697.680s
-```
+![image](results/plots/go.png)
 # Progress
-Project is in early development.
+Project is in early development.    
 ## TODO
-- Design table for benchmard data 
-- Export benchmark data to table
-- Write sort algorithms/benchmarks for other languages
+- [x] Design table for benchmard data 
+- [ ] Export benchmark data to table
+- [ ] Write sort algorithms/benchmarks for other languages
+- [ ] Add different benchmarks: random array, worst cases, already sorted arrays

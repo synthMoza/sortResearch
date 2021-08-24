@@ -93,6 +93,10 @@ func TestSort(t *testing.T) {
 	t.Run("Merge Sort Parallel", func(t *testing.T) {
 		testSortFunc(MergeSortParallel, t)
 	})
+	t.Run("Quick Sort", func(t *testing.T) {
+		testSortFunc(QuickSort, t)
+	})
+
 }
 
 func benchmarkSortFunc(s sortFunc, b *testing.B) {
@@ -132,5 +136,8 @@ func BenchmarkSort(b *testing.B) {
 	})
 	b.Run("Merge Sort Parallel", func(b *testing.B) {
 		benchmarkSortFunc(MergeSortParallel, b)
+	})
+	b.Run("Quick Sort", func(b *testing.B) {
+		benchmarkSortFunc(QuickSort, b)
 	})
 }
