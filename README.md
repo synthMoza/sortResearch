@@ -120,10 +120,16 @@ function quickSort(arr array, start int, end int) {
 Slices are used for storing array. Benchmarking and testing is done with built-in tools (*testing* package). Concurrency is implemented with the help of goroutines and wait groups for synchronization.
 # Benchmarks
 Test data for benchmarking is generated with *Go* and stored in JSON files: arrays of 50000, 200000 and 500000 elements generated with *rand* package. All benchmarks are done on AMD Ryzen 5 4600H CPU on Windows 10.
+
+
 ## Go
 ![image](results/plots/go.png)
 # Progress
-Project is in early development.    
+Project is in early development. 
+
+UPD[24.08.21]
+
+Data is put in excel table and also MATLAB script draws graphs.
 ## TODO
 - [x] Design table for benchmard data 
 - [ ] Export benchmark data to table
