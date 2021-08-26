@@ -122,7 +122,7 @@ Slices are used for storing elements for several reasons: firstly, in Go arrays 
 ### C
 Common arrays are used for storing elements. cJSON library is used for working with JSON test data files. Windows special functions `QueryPerformanceFrequency()` and `QueryPerformanceCounter()` measure time during benchmarks.
 # Benchmarks
-Test data for benchmarking is generated with *Go* and stored in JSON files: arrays of 50000, 200000 and 500000 elements generated with *rand* package. All benchmarks are done on AMD Ryzen 5 4600H CPU on Windows 10.
+Test data for benchmarking is generated with *Go* and stored in JSON files: arrays of 10000, 25000, 50000, 100000, 150000, 300000 and 500000 elements generated with *rand* package. All benchmarks are done on AMD Ryzen 5 4600H CPU on Windows 10.
 ## Temp results
 *Comparing: C vs Go*
 
