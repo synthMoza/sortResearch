@@ -25,7 +25,7 @@ The main purpose of this project is to write most of popular sorting algorithms 
 Here is the list of already implemented/being implemented languages and also planned ones.
 
 - [x] Go
-- [ ] C
+- [x] C
 - [ ] C++
 - [ ] Python
 - [ ] Java
