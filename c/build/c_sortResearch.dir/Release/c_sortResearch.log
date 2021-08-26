@@ -1,0 +1,11 @@
+﻿  main.c
+C:\Users\elect\go\src\sortResearch\c\src\main.c(44,18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\elect\go\src\sortResearch\c\src\main.c(195,9): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\elect\go\src\sortResearch\c\src\main.c(270,9): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  sorting.c
+C:\Users\elect\go\src\sortResearch\c\src\sorting.c(51,15): warning C4013: printf: нет определения; предполагается "extern" с возвратом типа "int"
+  Создание кода...
+C:\Users\elect\go\src\sortResearch\c\src\main.c(217): warning C4716: testSortFunc: должна возвращать значение
+C:\Users\elect\go\src\sortResearch\c\src\main.c(292): warning C4716: benchSortFunc: должна возвращать значение
+     Создается библиотека C:/Users/elect/go/src/sortResearch/c/build/Release/c_sortResearch.lib и объект C:/Users/elect/go/src/sortResearch/c/build/Release/c_sortResearch.exp
+  c_sortResearch.vcxproj -> C:\Users\elect\go\src\sortResearch\c\build\Release\c_sortResearch.exe

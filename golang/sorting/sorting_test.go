@@ -106,11 +106,16 @@ func benchmarkSortFunc(s sortFunc, b *testing.B) {
 	b.ResetTimer()
 	for idx := range sortCases {
 		b.Run("size="+strconv.Itoa(len(sortCases[idx])), func(bb *testing.B) {
+			// Clone all cases according to
+			sortCasesClones := make([][]int, bb.N)
 			for j := 0; j < bb.N; j++ {
-				sortCasesClone := clone(sortCases[idx])
+				sortCasesClones[j] = clone(sortCases[idx])
+			}
 
-				s(sortCasesClone)
-				if !reflect.DeepEqual(sortCasesClone, sortAnswers[idx]) {
+			bb.ResetTimer()
+			for j := 0; j < bb.N; j++ {
+				s(sortCasesClones[j])
+				if !reflect.DeepEqual(sortCasesClones[j], sortAnswers[idx]) {
 					b.Error("wrong answer on benchmark", idx)
 				}
 			}

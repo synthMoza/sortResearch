@@ -7,6 +7,7 @@ set(SRC_DIR src)
 
 set(JSON_LIB ${SRC_DIR}/cJSON.c)
 set(SRC_FILES ${SRC_DIR}/main.c ${SRC_DIR}/sorting.c)
+set(HEADERS ${INCLUDE_DIR}/sorting.h)
 
 include_directories(${INCLUDE_DIR})
-add_executable(${PROJECT_NAME} ${SRC_FILES} ${JSON_LIB})
+add_executable(${PROJECT_NAME} ${SRC_FILES} ${JSON_LIB} ${HEADERS})

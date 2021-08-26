@@ -1,0 +1,3 @@
+C:/Users/elect/go/src/sortResearch/c/build/CMakeFiles/c_sortResearch.dir
+C:/Users/elect/go/src/sortResearch/c/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/elect/go/src/sortResearch/c/build/CMakeFiles/ZERO_CHECK.dir
