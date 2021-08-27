@@ -12,8 +12,9 @@
     - [**Quick Sort**](#quick-sort)
   - [Data Structures](#data-structures)
     - [Go](#go)
+    - [C](#c)
 - [Benchmarks](#benchmarks)
-  - [Go](#go-1)
+    - [Temp results](#temp-results)
 - [Progress](#progress)
   - [TODO](#todo)
 # Brief Description
@@ -24,7 +25,7 @@ The main purpose of this project is to write most of popular sorting algorithms 
 Here is the list of already implemented/being implemented languages and also planned ones.
 
 - [x] Go
-- [ ] C
+- [x] C
 - [ ] C++
 - [ ] Python
 - [ ] Java
@@ -117,21 +118,29 @@ function quickSort(arr array, start int, end int) {
 ```
 ## Data Structures
 ### Go
-Slices are used for storing array. Benchmarking and testing is done with built-in tools (*testing* package). Concurrency is implemented with the help of goroutines and wait groups for synchronization.
+Slices are used for storing elements for several reasons: firstly, in Go arrays have their size as part of its type what makes some problems, and secondly, they are very clumsy comparing to slices. Benchmarking and testing is done with built-in tools (*testing* package). Work with JSON test data files is done via *encoding/json* package.
+### C
+Common arrays are used for storing elements. cJSON library is used for working with JSON test data files. Windows special functions `QueryPerformanceFrequency()` and `QueryPerformanceCounter()` measure time during benchmarks.
 # Benchmarks
-Test data for benchmarking is generated with *Go* and stored in JSON files: arrays of 50000, 200000 and 500000 elements generated with *rand* package. All benchmarks are done on AMD Ryzen 5 4600H CPU on Windows 10.
+Test data for benchmarking is generated with *Go* and stored in JSON files: arrays of 10000, 25000, 50000, 100000, 150000, 300000 and 500000 elements generated with *rand* package. All benchmarks are done on AMD Ryzen 5 4600H CPU on Windows 10.
+## Temp results
+*Comparing: C vs Go*
+
+Bubble Sort had much better perfomance on C (~20% better on 500k elements). Selection and insertions sort are quite similar on both languages (Go is slightly better on insertion sort). Merge and quick sort are much faster on C (~30% and ~50% better on 500k elements). 
 
 
-## Go
-![image](results/plots/go.png)
 # Progress
 Project is in early development. 
 
 UPD[24.08.21]
 
 Data is put in excel table and also MATLAB script draws graphs.
+
+UPD[27.08.21]
+
+Include cJSON into project to exctract tests from JSON files on C.
 ## TODO
 - [x] Design table for benchmard data 
 - [ ] Export benchmark data to table
-- [ ] Write sort algorithms/benchmarks for other languages
+- [x] Write sort algorithms/benchmarks for other languages
 - [ ] Add different benchmarks: random array, worst cases, already sorted arrays
